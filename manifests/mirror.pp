@@ -7,6 +7,7 @@ define aptly::mirror (
   $ensure        = 'present',
   $uid           = '450',
   $gid           = '450',
+  $update        = true,
   $distribution  = $::lsbdistcodename,
   $architectures = [],
   $components    = [],
@@ -23,6 +24,7 @@ define aptly::mirror (
     $components
   )
   validate_bool(
+    $update,
     $with_sources,
     $with_udebs
   )
@@ -33,6 +35,7 @@ define aptly::mirror (
     uid           => $uid,
     gid           => $gid,
     location      => $location,
+    update        => $update,
     distribution  => $distribution,
     architectures => $architectures,
     components    => $components,
